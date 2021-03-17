@@ -7,4 +7,5 @@
     <color name="colorAccent">#EF3A01</color>
     <color name="navBg">#1C1A19</color>
     <color name="itemColor">#757575</color>
+    <color name="navColorInactive">#757575</color>
 </resources>

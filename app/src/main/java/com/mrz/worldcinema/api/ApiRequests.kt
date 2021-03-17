@@ -1,6 +1,8 @@
 package com.mrz.worldcinema.api
 
+import com.mrz.worldcinema.data.Cover
 import com.mrz.worldcinema.data.Token
+import io.reactivex.Observable
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -17,7 +19,8 @@ interface ApiRequests {
 
     @POST("auth/login")
     @FormUrlEncoded
-    suspend fun signin(@Field("email") email: String, @Field("password") password: String):Response<Token>
+    suspend fun signIn(@Field("email") email: String, @Field("password") password: String):Response<Token>
 
-
+    @GET("movies/cover")
+    fun getCover(): Observable<Cover>
 }

@@ -103,7 +103,7 @@ class SignIn : AppCompatActivity() {
 
         GlobalScope.launch(Dispatchers.IO) {
             try {
-                val response = api.signin(etSignInEmail.text.toString(), etSignInPassword.text.toString())
+                val response = api.signIn(etSignInEmail.text.toString(), etSignInPassword.text.toString())
                 withContext(Dispatchers.Main) {
                     val token = response.body()?.token
                     if (token != null) {

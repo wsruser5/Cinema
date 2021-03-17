@@ -19,7 +19,7 @@ class LayersFragment : Fragment() {
     ): View? {
         layersViewModel =
             ViewModelProvider(this).get(LayersViewModel::class.java)
-        val root = inflater.inflate(R.layout.home_fragment, container, false)
+        val root = inflater.inflate(R.layout.layers_fragment, container, false)
         return root
     }
 

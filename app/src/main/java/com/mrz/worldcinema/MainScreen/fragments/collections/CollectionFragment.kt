@@ -19,7 +19,7 @@ class CollectionFragment : Fragment() {
     ): View? {
        collectionViewModel =
             ViewModelProvider(this).get(CollectionViewModel::class.java)
-        val root = inflater.inflate(R.layout.home_fragment, container, false)
+        val root = inflater.inflate(R.layout.collection_fragment, container, false)
         return root
     }
 
