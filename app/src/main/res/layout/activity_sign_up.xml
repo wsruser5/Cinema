@@ -1,112 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    android:orientation="vertical"
-    tools:context=".SignUp.SignUp"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp">
+    android:fillViewport="true">
 
-    <ImageView
-        android:layout_width="207dp"
-        android:layout_height="134dp"
-        android:src="@drawable/logo_with_text"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="88dp"/>
-
-    <EditText
-        android:id="@+id/etSignUpFirstName"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/btnHeight"
-        android:background="@drawable/bg_edit_text"
-        android:layout_marginTop="64dp"
-        android:hint="Имя"
-        android:textColorHint="@color/hint"
-        android:paddingStart="@dimen/marginAndPadding"
-        android:textSize="@dimen/textSizeMain"
-        android:paddingEnd="@dimen/marginAndPadding"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/hint"/>
-
-    <EditText
-        android:id="@+id/etSignUpSecondName"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/btnHeight"
-        android:background="@drawable/bg_edit_text"
-        android:layout_marginTop="@dimen/marginAndPadding"
-        android:hint="Фамилия"
-        android:textColorHint="@color/hint"
-        android:paddingStart="@dimen/marginAndPadding"
-        android:textSize="@dimen/textSizeMain"
-        android:paddingEnd="@dimen/marginAndPadding"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/hint"/>
-
-    <EditText
-        android:id="@+id/etSignUpEmail"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/btnHeight"
-        android:background="@drawable/bg_edit_text"
-        android:layout_marginTop="@dimen/marginAndPadding"
-        android:hint="E-mail"
-        android:textColorHint="@color/hint"
-        android:paddingStart="@dimen/marginAndPadding"
-        android:textSize="@dimen/textSizeMain"
-        android:paddingEnd="@dimen/marginAndPadding"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/hint"/>
-
-    <EditText
-        android:id="@+id/etSignUpPassword"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/btnHeight"
-        android:hint="Пароль"
-        android:background="@drawable/bg_edit_text"
-        android:textColorHint="@color/hint"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        tools:context=".SignUp.SignUp"
         android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:textSize="@dimen/textSizeMain"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/hint"
-        android:layout_marginTop="@dimen/marginAndPadding" />
+        android:paddingEnd="16dp">
 
-    <EditText
-        android:id="@+id/etSignUpPasswordRepeat"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/btnHeight"
-        android:hint="Повторите пароль"
-        android:background="@drawable/bg_edit_text"
-        android:textColorHint="@color/hint"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:textSize="@dimen/textSizeMain"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/hint"
-        android:layout_marginTop="@dimen/marginAndPadding" />
+        <ImageView
+            android:id="@+id/logoSignUp"
+            android:layout_width="207dp"
+            android:layout_height="134dp"
+            android:src="@drawable/logo_with_text"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="88dp"/>
 
-    <Button
-        android:id="@+id/btnSignUpRegister"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/btnHeight"
-        android:background="@drawable/bg_button"
-        android:textAllCaps="false"
-        android:layout_marginTop="60dp"
-        android:textColor="@color/white"
-        android:textSize="@dimen/textSizeMain"
-        android:text="Зарегестрироваться"/>
+        <EditText
+            android:id="@+id/etSignUpFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btnHeight"
+            android:background="@drawable/bg_edit_text"
+            android:layout_marginTop="64dp"
+            android:hint="Имя"
+            android:textColorHint="@color/hint"
+            android:paddingStart="@dimen/marginAndPadding"
+            android:textSize="@dimen/textSizeMain"
+            android:paddingEnd="@dimen/marginAndPadding"
+            android:inputType="textPersonName"
+            android:textColor="@color/hint"/>
 
-    <Button
-        android:id="@+id/btnSignUpSignIn"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/btnHeight"
-        android:background="@drawable/bg_edit_text"
-        android:textColor="@color/colorAccent"
-        android:text="У меня уже есть аккаунт"
-        android:textAllCaps="false"
-        android:layout_marginTop="@dimen/marginAndPadding"
-        android:textSize="@dimen/textSizeMain"/>
-    
-</LinearLayout>
+        <EditText
+            android:id="@+id/etSignUpSecondName"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btnHeight"
+            android:background="@drawable/bg_edit_text"
+            android:layout_marginTop="@dimen/marginAndPadding"
+            android:hint="Фамилия"
+            android:textColorHint="@color/hint"
+            android:paddingStart="@dimen/marginAndPadding"
+            android:textSize="@dimen/textSizeMain"
+            android:paddingEnd="@dimen/marginAndPadding"
+            android:inputType="textPersonName"
+            android:textColor="@color/hint"/>
+
+        <EditText
+            android:id="@+id/etSignUpEmail"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btnHeight"
+            android:background="@drawable/bg_edit_text"
+            android:layout_marginTop="@dimen/marginAndPadding"
+            android:hint="E-mail"
+            android:textColorHint="@color/hint"
+            android:paddingStart="@dimen/marginAndPadding"
+            android:textSize="@dimen/textSizeMain"
+            android:paddingEnd="@dimen/marginAndPadding"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/hint"/>
+
+        <EditText
+            android:id="@+id/etSignUpPassword"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btnHeight"
+            android:hint="Пароль"
+            android:background="@drawable/bg_edit_text"
+            android:textColorHint="@color/hint"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textSize="@dimen/textSizeMain"
+            android:inputType="textPassword"
+            android:textColor="@color/hint"
+            android:layout_marginTop="@dimen/marginAndPadding" />
+
+        <EditText
+            android:id="@+id/etSignUpPasswordRepeat"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btnHeight"
+            android:hint="Повторите пароль"
+            android:background="@drawable/bg_edit_text"
+            android:textColorHint="@color/hint"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textSize="@dimen/textSizeMain"
+            android:inputType="textPassword"
+            android:textColor="@color/hint"
+            android:layout_marginTop="@dimen/marginAndPadding" />
+
+        <Button
+            android:id="@+id/btnSignUpRegister"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btnHeight"
+            android:background="@drawable/bg_button"
+            android:textAllCaps="false"
+            android:layout_marginTop="60dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSizeMain"
+            android:text="Зарегистрироваться"/>
+
+        <Button
+            android:id="@+id/btnSignUpSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btnHeight"
+            android:background="@drawable/bg_edit_text"
+            android:textColor="@color/colorAccent"
+            android:text="У меня уже есть аккаунт"
+            android:textAllCaps="false"
+            android:layout_marginTop="@dimen/marginAndPadding"
+            android:textSize="@dimen/textSizeMain"/>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,70 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignIn.SignIn"
-    android:orientation="vertical"
-    android:paddingStart="@dimen/marginAndPadding"
-    android:paddingEnd="@dimen/marginAndPadding"
-    android:background="@color/colorPrimary">
+    android:fillViewport="true">
 
-    <ImageView
-        android:layout_width="207dp"
-        android:layout_height="134dp"
-        android:src="@drawable/logo_with_text"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="132dp"/>
-
-    <EditText
-        android:id="@+id/etSignInEmail"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/btnHeight"
-        android:background="@drawable/bg_edit_text"
-        android:layout_marginTop="104dp"
-        android:hint="E-mail"
-        android:textColorHint="@color/hint"
+        android:layout_height="match_parent"
+        tools:context=".SignIn.SignIn"
+        android:orientation="vertical"
         android:paddingStart="@dimen/marginAndPadding"
-        android:textSize="@dimen/textSizeMain"
         android:paddingEnd="@dimen/marginAndPadding"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/hint"/>
+        android:background="@color/colorPrimary">
 
-    <EditText
-        android:id="@+id/etSignInPassword"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/btnHeight"
-        android:hint="Пароль"
-        android:background="@drawable/bg_edit_text"
-        android:textColorHint="@color/hint"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:textSize="@dimen/textSizeMain"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/hint"
-        android:layout_marginTop="@dimen/marginAndPadding" />
+        <ImageView
+            android:id="@+id/logoSignIn"
+            android:layout_width="207dp"
+            android:layout_height="134dp"
+            android:src="@drawable/logo_with_text"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="132dp"/>
 
-    <Button
-        android:id="@+id/btnSignInLogin"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/btnHeight"
-        android:background="@drawable/bg_button"
-        android:textAllCaps="false"
-        android:layout_marginTop="156dp"
-        android:textColor="@color/white"
-        android:textSize="@dimen/textSizeMain"
-        android:text="Войти"/>
+        <EditText
+            android:id="@+id/etSignInEmail"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btnHeight"
+            android:background="@drawable/bg_edit_text"
+            android:layout_marginTop="104dp"
+            android:hint="E-mail"
+            android:textColorHint="@color/hint"
+            android:paddingStart="@dimen/marginAndPadding"
+            android:textSize="@dimen/textSizeMain"
+            android:paddingEnd="@dimen/marginAndPadding"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/hint"/>
 
-    <Button
-        android:id="@+id/btnSignInRegister"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/btnHeight"
-        android:background="@drawable/bg_edit_text"
-        android:textColor="@color/colorAccent"
-        android:text="Регистрация"
-        android:textAllCaps="false"
-        android:layout_marginTop="@dimen/marginAndPadding"
-        android:textSize="@dimen/textSizeMain"/>
+        <EditText
+            android:id="@+id/etSignInPassword"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btnHeight"
+            android:hint="Пароль"
+            android:background="@drawable/bg_edit_text"
+            android:textColorHint="@color/hint"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textSize="@dimen/textSizeMain"
+            android:inputType="textPassword"
+            android:textColor="@color/hint"
+            android:layout_marginTop="@dimen/marginAndPadding" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/btnSignInLogin"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btnHeight"
+            android:background="@drawable/bg_button"
+            android:textAllCaps="false"
+            android:layout_marginTop="156dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSizeMain"
+            android:text="Войти"/>
+
+        <Button
+            android:id="@+id/btnSignInRegister"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btnHeight"
+            android:background="@drawable/bg_edit_text"
+            android:textColor="@color/colorAccent"
+            android:text="Регистрация"
+            android:textAllCaps="false"
+            android:layout_marginTop="@dimen/marginAndPadding"
+            android:textSize="@dimen/textSizeMain"/>
+
+    </LinearLayout>
+
+</ScrollView>

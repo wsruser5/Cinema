@@ -3,23 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
-
+    app:startDestination="@id/homeFragment">
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.mrz.worldcinema.MainScreen.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
-
+        android:id="@+id/homeFragment"
+        android:name="com.mrz.worldcinema.MainScreen.fragments.home.HomeFragment"
+        android:label="home_fragment"
+        tools:layout="@layout/home_fragment" />
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.mrz.worldcinema.MainScreen.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-
+        android:id="@+id/layersFragment"
+        android:name="com.mrz.worldcinema.MainScreen.fragments.layers.LayersFragment"
+        android:label="layers_fragment"
+        tools:layout="@layout/layers_fragment" />
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.mrz.worldcinema.MainScreen.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/collectionFragment"
+        android:name="com.mrz.worldcinema.MainScreen.fragments.collections.CollectionFragment"
+        android:label="collection_fragment"
+        tools:layout="@layout/collection_fragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.mrz.worldcinema.MainScreen.fragments.profile.ProfileFragment"
+        android:label="profile_fragment"
+        tools:layout="@layout/profile_fragment" />
 </navigation>

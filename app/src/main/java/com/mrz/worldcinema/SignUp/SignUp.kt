@@ -17,24 +17,34 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.lang.Exception
 
 class SignUp : AppCompatActivity() {
+
+    var isEmail = false
+    var isPassword = false
+    var isPasswordRepeat = false
+    var isFirstName = false
+    var isSecondName = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
         etIsEmpty()
+        btnSignUpRegister.isEnabled = isEmail && isPassword && isPasswordRepeat && isFirstName && isSecondName
 
         btnSignUpRegister.setOnClickListener {
             signUp()
-            signUpToSignIn()
         }
 
         btnSignUpSignIn.setOnClickListener {
             signUpToSignIn()
         }
     }
+
+
     private fun etIsEmpty() {
 
         etSignUpEmail.addTextChangedListener(object: TextWatcher {
@@ -44,7 +54,11 @@ class SignUp : AppCompatActivity() {
 
                 if (!android.util.Patterns.EMAIL_ADDRESS.matcher(etSignUpEmail.text.toString()).matches()) {
                     etSignUpEmail.setError("Неверный e-mail")
+                    isEmail = false
+                } else {
+                    isEmail = true
                 }
+                btnSignUpRegister.isEnabled = isEmail && isPassword && isPasswordRepeat && isFirstName && isSecondName
 
             }
         })
@@ -56,10 +70,11 @@ class SignUp : AppCompatActivity() {
 
                 if (etSignUpPassword.getText().toString().equals("")) {
                     etSignUpPassword.error = "Заполните поле"
+                    isPassword = false
+                } else {
+                    isPassword = true
                 }
-                if (!etSignUpPasswordRepeat.getText().toString().equals(etSignUpPasswordRepeat.text.toString())) {
-                    etSignUpPasswordRepeat.setError("Пароли не совпадают")
-                }
+                btnSignUpRegister.isEnabled = isEmail && isPassword && isPasswordRepeat && isFirstName && isSecondName
 
             }
         })
@@ -71,7 +86,11 @@ class SignUp : AppCompatActivity() {
 
                 if (etSignUpFirstName.getText().toString().equals("")) {
                     etSignUpFirstName.error = "Заполните поле"
+                    isFirstName = false
+                } else {
+                    isFirstName = true
                 }
+                btnSignUpRegister.isEnabled = isEmail && isPassword && isPasswordRepeat && isFirstName && isSecondName
 
             }
         })
@@ -83,7 +102,11 @@ class SignUp : AppCompatActivity() {
 
                 if (etSignUpSecondName.getText().toString().equals("")) {
                     etSignUpSecondName.error = "Заполните поле"
+                    isSecondName = false
+                } else {
+                    isSecondName = true
                 }
+                btnSignUpRegister.isEnabled = isEmail && isPassword && isPasswordRepeat && isFirstName && isSecondName
 
             }
         })
@@ -94,7 +117,19 @@ class SignUp : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (etSignUpPasswordRepeat.getText().toString().equals("")) {
                     etSignUpPasswordRepeat.error = "Заполните поле"
+                    isPasswordRepeat = false
+                } else {
+                    isPasswordRepeat = true
                 }
+
+                if (!etSignUpPasswordRepeat.getText().toString().equals(etSignUpPassword.text.toString())) {
+                    etSignUpPasswordRepeat.setError("Пароли не совпадают")
+                    isPasswordRepeat = false
+                } else {
+                    isPasswordRepeat = true
+                }
+                btnSignUpRegister.isEnabled = isEmail && isPassword && isPasswordRepeat && isFirstName && isSecondName
+
             }
         })
 
@@ -107,6 +142,7 @@ class SignUp : AppCompatActivity() {
 
         val api = Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
+            .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(ApiRequests::class.java)
@@ -120,6 +156,7 @@ class SignUp : AppCompatActivity() {
                     etSignUpSecondName.text.toString()
                 )
                 Log.e("Login","Response: ${response.body()}")
+                signUpToSignIn()
             }
             catch(e: Exception) {
                 Log.e("Login", "Error: ${e.message}")
@@ -132,5 +169,6 @@ class SignUp : AppCompatActivity() {
         val intent = Intent(this, SignIn::class.java)
 
         startActivity(intent)
+        this.overridePendingTransition(0,0)
     }
 }
