@@ -1,5 +1,8 @@
 package com.mrz.worldcinema.MainScreen.fragments.home
 
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -39,7 +42,6 @@ class HomeFragment : Fragment() {
         homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.home_fragment, container, false)
-
         getCover()
 
 
@@ -49,6 +51,9 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val sharedPreference = context?.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+        val token:String = sharedPreference?.getString("token","").toString()
+
         btnTrends.setOnClickListener {
             filter = "inTrend"
             getMovies("inTrend")
@@ -129,8 +134,32 @@ class HomeFragment : Fragment() {
                             }
 
                             Log.d("testGif", movies.toString())
-                            Toast.makeText(context, "Good", Toast.LENGTH_SHORT).show()
                         }, onError = {
+                    Toast.makeText(context, "Ошибка на сервере", Toast.LENGTH_SHORT).show()
+                }
+                )
+    }
+
+    private var urlLast: String = ""
+    private var nameLast: String = ""
+    private var idLast: String = ""
+    private fun getLastVideo(token:String) {
+        buildNewRetrofit().create(ApiRequests::class.java).getLastVideo("lastView", token).subscribeOn(
+                Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .map {
+                    urlLast = it[0].poster
+                    nameLast = it[0].name
+                    idLast = it[0].movieId
+                }.subscribeBy(
+                        onNext = {
+                            Glide.with(this)
+                                    .load(Constants.IMG_URL + urlLast)
+                                    .into(ivMainLastVideo)
+                            tvMainLastVideoName.text = nameLast
+                            Log.d("testGif", "LastVideo")
+                        }, onError = {
+                    Log.e("testGif", "LastVideoError")
                     Toast.makeText(context, "Ошибка на сервере", Toast.LENGTH_SHORT).show()
                 }
                 )

@@ -1,6 +1,7 @@
 package com.mrz.worldcinema.api
 
 import com.mrz.worldcinema.data.Cover
+import com.mrz.worldcinema.data.LastVideoInfo
 import com.mrz.worldcinema.data.MoviesListItem
 import com.mrz.worldcinema.data.Token
 import io.reactivex.Observable
@@ -25,4 +26,10 @@ interface ApiRequests {
     @GET("movies")
     fun getMovies(
             @Query("filter") filter: String): Observable<List<MoviesListItem>>
+
+    @Headers("Authorization: Bearer {token}")
+    @GET("usermovies")
+    fun getLastVideo(
+            @Query("filter") filter: String,
+            @Path("token") token: String): Observable<List<LastVideoInfo>>
 }

@@ -1,5 +1,6 @@
 package com.mrz.worldcinema.SignIn
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -20,7 +21,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class SignIn : AppCompatActivity() {
 
@@ -107,8 +107,11 @@ class SignIn : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     val token = response.body()?.token
                     if (token != null) {
+                        val sharedPreference =  getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+                        var editor = sharedPreference.edit()
+                        editor.putString("token",token)
+                        editor.apply()
                         val intent = Intent(this@SignIn, MainScreen::class.java)
-                        intent.putExtra("token", token)
                         startActivity(intent)
                         this@SignIn.overridePendingTransition(0,0)
                     } else {
