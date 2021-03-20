@@ -1,13 +1,11 @@
 package com.mrz.worldcinema.api
 
 import com.mrz.worldcinema.data.Cover
+import com.mrz.worldcinema.data.MoviesListItem
 import com.mrz.worldcinema.data.Token
 import io.reactivex.Observable
 import retrofit2.Response
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiRequests {
     @POST("auth/register")
@@ -23,4 +21,8 @@ interface ApiRequests {
 
     @GET("movies/cover")
     fun getCover(): Observable<Cover>
+
+    @GET("movies")
+    fun getMovies(
+            @Query("filter") filter: String): Observable<List<MoviesListItem>>
 }

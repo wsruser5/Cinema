@@ -126,15 +126,15 @@
                         android:layout_gravity="bottom"/>
                 </FrameLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    android:id="@+id/items_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#00000000"
-                    android:elevation="0dp"/>
-
             </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/items_container"
+                android:layout_width="match_parent"
+                android:layout_height="166dp"
+                android:background="#00000000"
+                android:elevation="0dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         </LinearLayout>
 

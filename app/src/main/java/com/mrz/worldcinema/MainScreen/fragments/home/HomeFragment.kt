@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +14,7 @@ import com.google.gson.GsonBuilder
 import com.mrz.worldcinema.R
 import com.mrz.worldcinema.api.ApiRequests
 import com.mrz.worldcinema.constants.Constants
+import com.mrz.worldcinema.data.MoviesListItem
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
@@ -25,7 +27,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
-    private val myAdapter by lazy { MyAdapter() }
+    private val moviesAdapter by lazy { MoviesAdapter() }
+
+    private var filter: String = "inTrend"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,10 +42,53 @@ class HomeFragment : Fragment() {
 
         getCover()
 
-        items_container.adapter = myAdapter
-        items_container.layoutManager = LinearLayoutManager(, LinearLayoutManager.HORIZONTAL, false)
 
         return root
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        btnTrends.setOnClickListener {
+            filter = "inTrend"
+            getMovies("inTrend")
+            underForYou.visibility = View.INVISIBLE
+            underNew.visibility = View.INVISIBLE
+            underTrend.visibility = View.VISIBLE
+        }
+        btnForYou.setOnClickListener {
+            filter = "forMe"
+            getMovies("forMe")
+            underForYou.visibility = View.VISIBLE
+            underNew.visibility = View.INVISIBLE
+            underTrend.visibility = View.INVISIBLE
+        }
+        btnNew.setOnClickListener {
+            filter = "new"
+            getMovies("new")
+            underForYou.visibility = View.INVISIBLE
+            underNew.visibility = View.VISIBLE
+            underTrend.visibility = View.INVISIBLE
+        }
+
+        if (filter == "inTrend") {
+            underForYou.visibility = View.INVISIBLE
+            underNew.visibility = View.INVISIBLE
+            underTrend.visibility = View.VISIBLE
+        }
+        if (filter == "forMe") {
+            underForYou.visibility = View.VISIBLE
+            underNew.visibility = View.INVISIBLE
+            underTrend.visibility = View.INVISIBLE
+        }
+        if (filter == "new") {
+            underForYou.visibility = View.INVISIBLE
+            underNew.visibility = View.VISIBLE
+            underTrend.visibility = View.INVISIBLE
+        }
+        getMovies(filter)
+        items_container.adapter = moviesAdapter
+        items_container.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false)
     }
 
     private var url: String = ""
@@ -61,6 +108,30 @@ class HomeFragment : Fragment() {
                             Log.d("testGif", "Succesful")
                         }, onError = {
                     Log.d("testGif", "onError url = $url")
+                }
+                )
+    }
+
+    private lateinit var films: List<MoviesListItem>
+    private fun getMovies(filter: String) {
+        buildNewRetrofit().create(ApiRequests::class.java).getMovies(filter).subscribeOn(
+                Schedulers.newThread()
+        )
+                .observeOn(AndroidSchedulers.mainThread())
+                .map {
+                    films = it
+                }.subscribeBy(
+                        onNext = {
+                            val movies = films
+
+                            movies.let{
+                                moviesAdapter.setData(it)
+                            }
+
+                            Log.d("testGif", movies.toString())
+                            Toast.makeText(context, "Good", Toast.LENGTH_SHORT).show()
+                        }, onError = {
+                    Toast.makeText(context, "Ошибка на сервере", Toast.LENGTH_SHORT).show()
                 }
                 )
     }
