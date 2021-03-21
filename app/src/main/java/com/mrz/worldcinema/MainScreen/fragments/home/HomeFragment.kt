@@ -145,7 +145,7 @@ class HomeFragment : Fragment() {
     private var nameLast: String = ""
     private var idLast: String = ""
     private fun getLastVideo(token:String) {
-        buildNewRetrofit().create(ApiRequests::class.java).getLastVideo("lastView").subscribeOn(
+        buildNewRetrofit().create(ApiRequests::class.java).getLastVideo("lastView", token).subscribeOn(
                 Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map {
