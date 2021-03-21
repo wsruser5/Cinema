@@ -94,6 +94,7 @@ class HomeFragment : Fragment() {
         getMovies(filter)
         items_container.adapter = moviesAdapter
         items_container.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false)
+        getLastVideo(token)
     }
 
     private var url: String = ""
@@ -144,7 +145,7 @@ class HomeFragment : Fragment() {
     private var nameLast: String = ""
     private var idLast: String = ""
     private fun getLastVideo(token:String) {
-        buildNewRetrofit().create(ApiRequests::class.java).getLastVideo("lastView", token).subscribeOn(
+        buildNewRetrofit().create(ApiRequests::class.java).getLastVideo("lastView").subscribeOn(
                 Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map {

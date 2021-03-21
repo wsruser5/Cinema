@@ -15,18 +15,18 @@
         <activity
             android:name=".MainScreen.MainScreen"
             android:label="@string/title_activity_main_screen" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".SignUp.SignUp"
             android:windowSoftInputMode="stateVisible|adjustResize"/>
         <activity android:name=".SignIn.SignIn"
             android:windowSoftInputMode="stateVisible|adjustResize"/>
         <activity android:name=".launch.LaunchScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
