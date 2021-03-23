@@ -35,12 +35,12 @@ class HomeFragment : Fragment() {
     private var filter: String = "inTrend"
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+                ViewModelProvider(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.home_fragment, container, false)
         getCover()
 
@@ -52,7 +52,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val sharedPreference = context?.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
-        val token:String = sharedPreference?.getString("token","").toString()
+        val token: String = sharedPreference?.getString("token", "459084").toString()
 
         btnTrends.setOnClickListener {
             filter = "inTrend"
@@ -93,7 +93,7 @@ class HomeFragment : Fragment() {
         }
         getMovies(filter)
         items_container.adapter = moviesAdapter
-        items_container.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false)
+        items_container.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         getLastVideo(token)
     }
 
@@ -109,7 +109,7 @@ class HomeFragment : Fragment() {
                 }.subscribeBy(
                         onNext = {
                             Glide.with(this)
-                                    .load(Constants.IMG_URL +url)
+                                    .load(Constants.IMG_URL + url)
                                     .into(ivHeader)
                             Log.d("testGif", "Succesful")
                         }, onError = {
@@ -130,7 +130,7 @@ class HomeFragment : Fragment() {
                         onNext = {
                             val movies = films
 
-                            movies.let{
+                            movies.let {
                                 moviesAdapter.setData(it)
                             }
 
@@ -144,8 +144,8 @@ class HomeFragment : Fragment() {
     private var urlLast: String = ""
     private var nameLast: String = ""
     private var idLast: String = ""
-    private fun getLastVideo(token:String) {
-        buildNewRetrofit().create(ApiRequests::class.java).getLastVideo("lastView", token).subscribeOn(
+    private fun getLastVideo(token: String) {
+        buildNewRetrofit().create(ApiRequests::class.java).getLastVideo("lastView", " Bearer " + token).subscribeOn(
                 Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map {

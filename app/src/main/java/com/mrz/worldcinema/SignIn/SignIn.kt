@@ -110,7 +110,7 @@ class SignIn : AppCompatActivity() {
                         val sharedPreference =  getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
                         var editor = sharedPreference.edit()
                         editor.putString("token",token)
-                        editor.apply()
+                        editor.commit()
                         val intent = Intent(this@SignIn, MainScreen::class.java)
                         startActivity(intent)
                         this@SignIn.overridePendingTransition(0,0)

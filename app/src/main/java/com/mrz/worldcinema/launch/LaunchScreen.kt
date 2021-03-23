@@ -25,8 +25,10 @@ class LaunchScreen : AppCompatActivity() {
                 editSharedPref.commit()
 
                 startActivity(Intent(this, SignUp::class.java))
+                finish()
             } else {
                 startActivity(Intent(this, SignIn::class.java))
+                finish()
             }
         }, 3000)
     }

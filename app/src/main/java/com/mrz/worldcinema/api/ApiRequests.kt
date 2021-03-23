@@ -27,9 +27,8 @@ interface ApiRequests {
     fun getMovies(
             @Query("filter") filter: String): Observable<List<MoviesListItem>>
 
-    @Headers("Authorization: Bearer 435874")
     @GET("usermovies")
     fun getLastVideo(
             @Query("filter") filter: String,
-            @Path("token") token:String): Observable<List<LastVideoInfo>>
+            @Header("Authorization") token: String): Observable<List<LastVideoInfo>>
 }
